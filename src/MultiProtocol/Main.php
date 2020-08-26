@@ -17,13 +17,15 @@ class Main extends PluginBase implements Listener {
    public function onEnable() {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->getLogger()->info("MultiProtocol Plugin Enable!");
+	   	$this->getLogger()->info("Created by BajanVlogs, maintained for API 3 by princepines");
+	   	$this->getLogger()->info("This plugin can be redistrubuted, modified, etc. based on the License.");
 		
 		@mkdir($this->getDataFolder());
-		$this->acceptProtocol = (new Config($this->getDataFolder()."accept.yml", Config::YAML))->get("accept-protocol");
+		$this->acceptProtocol = (new Config($this->getDataFolder()."protocol.yml", Config::YAML))->get("accept-protocol");
 		
 		if ($this->acceptProtocol === false || empty($this->acceptProtocol)) {
 			$this->acceptProtocol[] = ProtocolInfo::CURRENT_PROTOCOL;
-			$config = new Config($this->getDataFolder()."accept.yml", Config::YAML);
+			$config = new Config($this->getDataFolder()."protocol.yml", Config::YAML);
 			$config->set("accept-protocol", [ProtocolInfo::CURRENT_PROTOCOL]);
 			$config->save();
 		}
