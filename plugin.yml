@@ -1,9 +1,9 @@
 ---
 name: MultiProtocol
 main: MultiProtocol\Main
-api: [4.0.0]
-version: 0.0.1
-author: BajanVlogs
+api: [3.0.0]
+version: 1.0.0-API3
+author: BajanVlogs, princepines
 commands: []
 permissions: []
 ...
