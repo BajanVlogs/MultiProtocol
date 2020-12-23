@@ -32,6 +32,8 @@ Save the file and restart your server, then done!
 
 
 NOTE : This plugin is modified and make more instruction-friendly and support latest PMMP API (3)
+Another NOTE: This Plugin works only on MCBE only, and the accepted range protocol in MP is below to the latest release not on legacy release.
+That means if your server is 1.16.20, it works only on 1.16.20 and 1.16.0 -  ".10
 
 Original : https://github.com/BajanVlogs/MultiProtocol
 
