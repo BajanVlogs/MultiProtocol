@@ -36,9 +36,9 @@ NOTE : This plugin is modified and make more instruction-friendly and support la
 Another NOTE: This Plugin works only on MCBE only, and the accepted range protocol in MP is below to the latest release not on legacy release.
 That means if your server is 1.16.20, it works only on 1.16.20 and 1.16.0 -  ".10
 
-# If Confused the following protocol will work only on MP (As you can see 2 protocols only accepted, which is latest and the last previous release):
+**If still confusing the following protocol will work only on MP (As you can see 2 protocols only accepted, which is latest and the last previous release):
 - 419 (1.16.100 - 1.16.101)
-- 422 (1.16.200 - 1.16.201)
+- 422 (1.16.200 - 1.16.201)**
 
 
 Original : https://github.com/BajanVlogs/MultiProtocol
