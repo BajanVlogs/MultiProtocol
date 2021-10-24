@@ -3,5 +3,5 @@ branches:
 - master
 projects:
   MultiProtocol:
-    path: ""
+    path: "/"
 ...
