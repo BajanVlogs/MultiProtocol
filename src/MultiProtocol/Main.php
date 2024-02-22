@@ -9,12 +9,11 @@ use pocketmine\network\mcpe\protocol\ProtocolInfo;
 use pocketmine\event\server\DataPacketReceiveEvent;
 use pocketmine\network\mcpe\protocol\LoginPacket;
 
-
-class Main extends PluginBase {
+class Main extends PluginBase implements Listener {
 	
    public $acceptProtocol = [];
 
-   public function onEnable() {
+   public function onEnable(): void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->getLogger()->info("MultiProtocol Plugin Enable!");
 		
@@ -29,7 +28,7 @@ class Main extends PluginBase {
 		}
     }
     
-    public function onDataPacketRecieve (DataPacketReceiveEvent $ev) {
+    public function onDataPacketReceive(DataPacketReceiveEvent $ev): void {
     	$pk = $ev->getPacket();
     	if ($pk instanceof LoginPacket) {
     		if (in_array($pk->protocol, $this->acceptProtocol)) {
