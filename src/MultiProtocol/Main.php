@@ -10,7 +10,7 @@ use pocketmine\event\server\DataPacketReceiveEvent;
 use pocketmine\network\mcpe\protocol\LoginPacket;
 
 
-class Main extends PluginBase implements Listener {
+class Main extends PluginBase {
 	
    public $acceptProtocol = [];
 
