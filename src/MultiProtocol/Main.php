@@ -6,6 +6,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\utils\Config;
 use pocketmine\event\server\DataPacketReceiveEvent;
+use pocketmine\network\mcpe\protocol\LoginPacket;
 use pocketmine\network\mcpe\handler\LoginPacketHandler;
 
 class Main extends PluginBase implements Listener {
@@ -21,7 +22,7 @@ class Main extends PluginBase implements Listener {
         $config = new Config($this->getDataFolder() . "accept.yml", Config::YAML);
         $this->acceptProtocol = $config->get("accept-protocol", []);
         if (empty($this->acceptProtocol)) {
-            $this->acceptProtocol[] = $this->getServer()->getVersion()->getProtocol();
+            $this->acceptProtocol[] = $this->getServer()->getNetwork()->getProtocolVersion();
             $config->set("accept-protocol", $this->acceptProtocol);
             $config->save();
         }
@@ -30,10 +31,12 @@ class Main extends PluginBase implements Listener {
     public function onDataPacketReceive(DataPacketReceiveEvent $event): void {
         $packet = $event->getPacket();
         if ($packet instanceof LoginPacket) {
-            $handler = new LoginPacketHandler($packet);
+            $handler = new LoginPacketHandler($packet->protocol, $packet->clientUUID, $packet->username, $packet->protocol);
             if (!in_array($handler->protocol, $this->acceptProtocol)) {
-                $handler->protocol = $this->getServer()->getVersion()->getProtocol();
-                $event->setPacket($handler->getPacket());
+                $handler->protocol = $this->getServer()->getNetwork()->getProtocolVersion();
+                // You cannot modify the packet in this way.
+                // Instead, handle the login packet accordingly.
+                // For example, you might kick the player or send a message.
             }
         }
     }
