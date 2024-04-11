@@ -7,6 +7,7 @@ use pocketmine\event\Listener;
 use pocketmine\utils\Config;
 use pocketmine\event\server\DataPacketReceiveEvent;
 use pocketmine\network\mcpe\handler\LoginPacketHandler;
+use pocketmine\player\Player;
 use pocketmine\Server;
 
 class Main extends PluginBase implements Listener {
@@ -44,27 +45,11 @@ class Main extends PluginBase implements Listener {
                 $event->cancel();
                 
                 // Optionally, you can kick the player or send a message explaining why they can't join.
-                $player = $this->getPlayerFromEvent($event);
-                if ($player !== null) {
+                $player = $event->getPlayer();
+                if ($player instanceof Player) {
                     $player->kick("Your version of Minecraft Bedrock is not supported by this server.");
                 }
             }
         }
-    }
-
-    /**
-     * Get the player from the DataPacketReceiveEvent.
-     *
-     * @param DataPacketReceiveEvent $event
-     * @return \pocketmine\player\Player|null
-     */
-    private function getPlayerFromEvent(DataPacketReceiveEvent $event): ?\pocketmine\player\Player {
-        $players = $this->getServer()->getOnlinePlayers();
-        foreach ($players as $player) {
-            if ($player->getAddress() === $event->getPacket()->address and $player->getPort() === $event->getPacket()->port) {
-                return $player;
-            }
-        }
-        return null;
     }
 }
