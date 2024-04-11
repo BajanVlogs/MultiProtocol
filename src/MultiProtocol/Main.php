@@ -7,6 +7,8 @@ use pocketmine\event\Listener;
 use pocketmine\utils\Config;
 use pocketmine\event\server\DataPacketReceiveEvent;
 use pocketmine\network\mcpe\handler\LoginPacketHandler;
+use pocketmine\Player;
+use pocketmine\Server;
 
 class Main extends PluginBase implements Listener {
     
@@ -39,8 +41,14 @@ class Main extends PluginBase implements Listener {
 
             $clientVersion = $packet->clientData["GameVersion"];
             if (!in_array($clientVersion, $this->acceptVersions)) {
-                $event->setCancelled(true); // Cancel the login attempt for unsupported versions
+                // Cancel the login attempt for unsupported versions
+                $event->cancel();
+                
                 // Optionally, you can kick the player or send a message explaining why they can't join.
+                $player = $event->getPlayer();
+                if ($player instanceof Player) {
+                    $player->kick("Your version of Minecraft Bedrock is not supported by this server.");
+                }
             }
         }
     }
