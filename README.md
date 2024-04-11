@@ -1,47 +1,24 @@
 # MultiProtocol Plugin
 
-The MultiProtocol Plugin allows you to manage and modify incoming network protocols for players connecting to your PocketMine-MP server.
+A PocketMine-MP plugin for supporting multiple versions of Minecraft Bedrock Edition.
 
-## Features
+## Description
 
-- Dynamically adjust incoming network protocols based on configurable settings.
-- Ensure compatibility with multiple Minecraft: Bedrock Edition client versions.
-- Lightweight and easy to configure.
+This PocketMine-MP plugin allows servers to support multiple versions of Minecraft Bedrock Edition by filtering out login attempts from unsupported client versions.
 
-## Installation
+## Usage
 
-1. Download the plugin from [here](#).
-2. Place the downloaded `MultiProtocol` folder into the `plugins` folder of your PocketMine-MP server.
-3. Start or reload your server.
+1. Place the `MultiProtocol` folder inside the `plugins` folder of your PocketMine-MP server.
+2. Start or restart your PocketMine-MP server.
+3. The plugin will automatically filter out login attempts from unsupported client versions according to the specified accepted versions in the `accept.yml` file.
 
 ## Configuration
 
-The plugin comes with a simple configuration file to manage accepted protocols. By default, it accepts the current protocol version.
+The `accept.yml` file located in the `plugins/MultiProtocol` folder contains the list of accepted Minecraft Bedrock Edition versions.
 
-To customize the accepted protocols:
-
-1. Navigate to the `plugins/MultiProtocol` folder.
-2. Open `accept.yml` in a text editor.
-3. Add or remove protocol versions from the list as needed.
-4. Save the file.
-
-Example `accept.yml`:
+Example `accept.yml` content:
 ```yaml
-accept-protocol:
-  - 419
-  - 428
+accept-versions:
+  - "1.19.0"
+  - "1.20.0"
 
-Usage
-Once the plugin is installed and configured, it will automatically handle incoming connection protocols based on your configuration.
-
-Commands
-This plugin does not introduce any new commands.
-
-Permissions
-This plugin does not require any special permissions.
-
-Contributing
-Contributions are welcome! If you find a bug or have a feature request, feel free to open an issue or submit a pull request.
-
-License
-This plugin is open-source and available under the MIT License.
