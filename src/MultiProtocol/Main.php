@@ -7,7 +7,7 @@ use pocketmine\event\Listener;
 use pocketmine\utils\Config;
 use pocketmine\event\server\DataPacketReceiveEvent;
 use pocketmine\network\mcpe\handler\LoginPacketHandler;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\Server;
 
 class Main extends PluginBase implements Listener {
