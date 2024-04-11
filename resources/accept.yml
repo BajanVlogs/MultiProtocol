@@ -1,0 +1,18 @@
+# accept.yml
+
+# List of accepted protocol versions for Minecraft Bedrock Edition
+accept-protocol:
+  - 448 # Minecraft Bedrock Edition 1.20.0
+  - 447 # Minecraft Bedrock Edition 1.19.0
+  - 446 # Minecraft Bedrock Edition 1.18.0
+  - 445 # Minecraft Bedrock Edition 1.17.40
+  - 444 # Minecraft Bedrock Edition 1.17.30
+  - 443 # Minecraft Bedrock Edition 1.17.20
+  - 442 # Minecraft Bedrock Edition 1.17.10
+  - 441 # Minecraft Bedrock Edition 1.17.0
+  - 440 # Minecraft Bedrock Edition 1.16.221
+  - 439 # Minecraft Bedrock Edition 1.16.220
+  - 438 # Minecraft Bedrock Edition 1.16.210
+  - 437 # Minecraft Bedrock Edition 1.16.201
+  - 436 # Minecraft Bedrock Edition 1.16.200
+  # Add more versions as needed...
