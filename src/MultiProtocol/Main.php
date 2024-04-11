@@ -45,8 +45,8 @@ class Main extends PluginBase implements Listener {
                 $event->cancel();
                 
                 // Optionally, you can kick the player or send a message explaining why they can't join.
-                $player = $event->getPlayer();
-                if ($player instanceof Player) {
+                $player = $event->getOrigin()->getPlayer();
+                if (!$player === null) {
                     $player->kick("Your version of Minecraft Bedrock is not supported by this server.");
                 }
             }
