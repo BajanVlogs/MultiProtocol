@@ -6,7 +6,6 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\utils\Config;
 use pocketmine\event\server\DataPacketReceiveEvent;
-use pocketmine\network\mcpe\protocol\LoginPacket;
 use pocketmine\network\mcpe\handler\LoginPacketHandler;
 
 class Main extends PluginBase implements Listener {
