@@ -11,7 +11,7 @@ use pocketmine\network\mcpe\handler\LoginPacketHandler;
 class Main extends PluginBase implements Listener {
     
     /** @var array */
-    private $acceptProtocol;
+    private $acceptVersions;
 
     public function onEnable(): void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
@@ -19,23 +19,28 @@ class Main extends PluginBase implements Listener {
 
         @mkdir($this->getDataFolder());
         $config = new Config($this->getDataFolder() . "accept.yml", Config::YAML);
-        $this->acceptProtocol = $config->get("accept-protocol", []);
-        if (empty($this->acceptProtocol)) {
-            $this->acceptProtocol[] = $this->getServer()->getNetwork()->getProtocolVersion();
-            $config->set("accept-protocol", $this->acceptProtocol);
+        $this->acceptVersions = $config->get("accept-versions", []);
+        if (empty($this->acceptVersions)) {
+            $this->acceptVersions = [ // Earliest supported Bedrock version is 1.19
+                "1.19.0",
+                "1.20.0", // Add more versions as needed
+            ];
+            $config->set("accept-versions", $this->acceptVersions);
             $config->save();
         }
     }
 
     public function onDataPacketReceive(DataPacketReceiveEvent $event): void {
         $packet = $event->getPacket();
-        if ($packet instanceof LoginPacket) {
-            $handler = new LoginPacketHandler($packet->protocol, $packet->clientUUID, $packet->username, $packet->protocol);
-            if (!in_array($handler->protocol, $this->acceptProtocol)) {
-                $handler->protocol = $this->getServer()->getNetwork()->getProtocolVersion();
-                // You cannot modify the packet in this way.
-                // Instead, handle the login packet accordingly.
-                // For example, you might kick the player or send a message.
+        if ($packet instanceof \pocketmine\network\mcpe\protocol\LoginPacket) {
+            if (!isset($packet->clientData["GameVersion"])) {
+                return; // Invalid packet, ignore it
+            }
+
+            $clientVersion = $packet->clientData["GameVersion"];
+            if (!in_array($clientVersion, $this->acceptVersions)) {
+                $event->setCancelled(true); // Cancel the login attempt for unsupported versions
+                // Optionally, you can kick the player or send a message explaining why they can't join.
             }
         }
     }
